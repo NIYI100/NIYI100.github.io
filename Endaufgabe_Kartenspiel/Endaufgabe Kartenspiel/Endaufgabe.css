@@ -1,0 +1,53 @@
+html {
+    font-family: sans-serif;
+    background-color: lightgray;
+    user-select: none;
+}
+
+header {
+    text-align: center;
+}
+
+.GegnerHandkarten {
+    position: relative;
+    background-color: #556b2f;
+    height: 250px;
+}
+
+.Spielfläche {
+    position: relative;
+    background-color: darkgreen;
+    float: left;
+    width: 70%;
+    height: 350px;
+}
+
+.Stapelzumziehen {
+    position: relative;
+    background-color: grey;
+    float: right;
+    width: 30%;
+    height: 350px;
+}
+
+.kartendeck {
+    height: 225px;
+    width: 150px;
+    background-color: white;
+    margin-left: 140px;
+    margin-top: 30px;
+    border-radius: 5%;
+}
+
+.meineHandkarten {
+    position: relative;
+    background-color: green;
+    height: 250px;
+    clear: both;
+}
+
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+}
