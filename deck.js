@@ -60,9 +60,13 @@ export class Card {
         cardDiv.dataset.value = `${this.value} ${this.suit}`;
         cardDiv.classList.add("carddiv");
 
-        /* In Card boolean isChosesn -> onCLick -> isChose = !isChosen (evtl. noch border ändern)
-        -> add eventListener -> accel -> card isChose + acc.x > 5000 -> playCard
-        */
+        if (this.isChosen) {
+            cardDiv.style.border = "3px solid yellow"
+        } else {
+            cardDiv.style.border = "1px solid black"
+        }
+
+
         cardDiv.addEventListener("click", () => {
             hand.cards.forEach(card => {
                 card.isChosen = false;
