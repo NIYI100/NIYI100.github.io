@@ -17,8 +17,7 @@ window.addEventListener("devicemotion", function (event) {
     var az = event.accelerationIncludingGravity.z
 
     document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
-    /*
-    if (ax > 100 || ay > 100 || az > 100) {
+    if (ay > 2) {
         playerHand.cards.forEach(card => {
             if (card.isChosen && card.isPlayable(openCard)) {
                 playCardAndComputerTurn(card)
@@ -26,7 +25,6 @@ window.addEventListener("devicemotion", function (event) {
             }
         })
     }
-    */
 }, false);
 
 let accelerometer = null;
