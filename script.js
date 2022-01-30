@@ -18,7 +18,11 @@ window.addEventListener("devicemotion", function (event) {
     var ay = Math.round(event.accelerationIncludingGravity.y * 10) / 10
     var az = Math.round(event.accelerationIncludingGravity.z * 10) / 10
 
-    document.querySelector(".werte").innerHTML = "X = " + Math.max(ax, maxX) + "<br>" + "Y = " + Math.max(ay, maxY) + "<br>" + "Z = " + Math.max(az, maxZ);
+    maxX = Math.max(ax, maxX)
+    maxY = Math.max(ay, maxY)
+    maxZ = Math.max(az, maxZ)
+
+    document.querySelector(".werte").innerHTML = "X = " + maxX + "<br>" + "Y = " + maxY + "<br>" + "Z = " + maxZ;
     if (ay > 6) {
         sleep(200)
         if (ay > 6) {
