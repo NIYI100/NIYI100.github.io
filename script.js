@@ -58,9 +58,9 @@ function renderBoard() {
         openCardSlot.innerHTML = "";
         drawPileSlot.innerHTML = "";
 
-        playerHandSlot.appendChild(playerHand.getHTML());
-        computerHandSlot.appendChild(computerHand.getHTML());
-        openCardSlot.appendChild(openCard.getHTML(computerHand));
+        playerHandSlot.appendChild(playerHand.getHTML(renderBoard));
+        computerHandSlot.appendChild(computerHand.getHTML(renderBoard));
+        openCardSlot.appendChild(openCard.getHTML(computerHand, renderBoard));
         drawPileSlot.appendChild(getDrawPileHTML());
     }
 }
