@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descripton" content="Eine Kartenspielseite für Mobile Computing & IoT">
+    <meta name="keywords" content="HTML, CSS, Javascript, Kartenspiel, IoT, Mobile Computing">
+
+
     <title>Kartenspiel</title>
-    <link rel="stylesheet" href="./statics/styles.css">
-    <script src="./niyi100.github.io/statics/script.js" type="module"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" type="module"></script>
 
 </head>
 
@@ -15,16 +19,18 @@
     <header>
         <h1>Kartenspiel</h1>
     </header>
-
     <main>
-        <div class="computer-board">
+        <div class="wrapper">
+            <div class="background-Computer">Gegner</div>
             <div class="computer-hand"></div>
+            <div class="background-playing-field"></div>
+            <div class="playing-field"></div>
+            <div class="background-draw-pile"></div>
+            <div class="draw-pile"></div>
+            <div class="background-player">You</div>
+            <div class="player-hand"></div>
         </div>
     </main>
-    <footer>
-        <p>Name: Anna-Lena Jörger<br>
-            Matrikelnummer: 269432</p>
-    </footer>
 </body>
 
 </html>
