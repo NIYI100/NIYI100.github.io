@@ -102,6 +102,10 @@ function getDrawPileHTML() {
 
         if (noCardPlayable == true) {
             drawCard(playerHand);
+            playerHand.cards.forEach(card => {
+                card.isChosen = false;
+            })
+            renderBoard();
             computerTurn();
         }
     });

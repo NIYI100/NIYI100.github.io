@@ -72,6 +72,8 @@ export class Card {
                 card.isChosen = false;
             });
             this.isChosen = !this.isChosen
+            hand.getHTML()
+            return;
         });
         return cardDiv;
     }
