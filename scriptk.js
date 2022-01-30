@@ -12,9 +12,9 @@ let drawPile = new Deck();
 let openCard;
 
 window.addEventListener("devicemotion", function (event) {
-    var ax = event.accelerationIncludingGravity.x
-    var ay = event.accelerationIncludingGravity.y
-    var az = event.accelerationIncludingGravity.z
+    var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
+    var ay = Math.round(event.accelerationIncludingGravity.y * 10) / 10
+    var az = Math.round(event.accelerationIncludingGravity.z * 10) / 10
 
     document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
     if (ay > 2) {
@@ -27,6 +27,7 @@ window.addEventListener("devicemotion", function (event) {
     }
 }, false);
 
+/*
 let accelerometer = null;
 try {
     accelerometer = new Accelerometer({ frequency: 10 });
@@ -52,6 +53,7 @@ try {
         throw error;
     }
 }
+*/
 
 startGame();
 
