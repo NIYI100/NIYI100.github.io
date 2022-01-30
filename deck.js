@@ -25,11 +25,11 @@ export class Deck {
         }
     }
 
-    getHTML() {
+    getHTML(renderBoard) {
         const handDiv = document.createElement("div");
         for (let i = 0; i < this.cards.length; i++) {
             const newCard = this.cards[i];
-            handDiv.appendChild(newCard.getHTML(this));
+            handDiv.appendChild(newCard.getHTML(this, renderBoard));
         }
 
         return handDiv;
@@ -52,7 +52,7 @@ export class Card {
         return this.suit === '♠' || this.suit === '♣' ? 'black' : 'red'
     }
 
-    getHTML(hand) {
+    getHTML(hand, renderBoard) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "card"
         cardDiv.innerText = this.suit;
@@ -72,7 +72,7 @@ export class Card {
                 card.isChosen = false;
             });
             this.isChosen = !this.isChosen
-            hand.getHTML()
+            renderBoard()
             return;
         });
         return cardDiv;
