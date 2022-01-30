@@ -71,7 +71,7 @@ export class Card {
             hand.cards.forEach(card => {
                 card.isChosen = false;
             });
-            this.isChosen = true
+            this.isChosen = !this.isChosen
         });
         return cardDiv;
     }
