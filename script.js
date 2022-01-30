@@ -41,12 +41,20 @@ function startGame() {
 
 function initiateBoard() {
     drawPile.freshDeck();
+    console.log("Frisched Deck:")
+    console.log(drawPile)
     drawPile.shuffle();
+    console.log("Gemischtes Deck:")
+    console.log(drawPile)
 
     openCard = drawPile.cards[0];
     computerHand.cards = drawPile.cards.slice(1, 5);
     playerHand.cards = drawPile.cards.slice(5, 9);
+    console.log("Ausgeteilte Karten:")
+    console.log(openCard + computerHand + playerHand)
     drawPile.cards = drawPile.cards.slice(9, drawPile.length);
+    console.log("Restliches Deck:")
+    console.log(drawPile)
 
 
 }
