@@ -66,7 +66,7 @@ function renderBoard() {
 
         playerHandSlot.appendChild(playerHand.getHTML(renderBoard));
         computerHandSlot.appendChild(computerHand.getHTML(renderBoard));
-        openCardSlot.appendChild(openCard.getHTML(computerHand, renderBoard));
+        openCardSlot.appendChild(openCard.getHTML(computerHand, () => { openCard.wasChosen = false; }));
         drawPileSlot.appendChild(getDrawPileHTML());
     }
 }
