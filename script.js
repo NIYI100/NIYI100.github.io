@@ -11,18 +11,13 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
-let maxX = 0, maxY = 0, maxZ = 0
 
 window.addEventListener("devicemotion", function (event) {
     var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
     var ay = Math.round(event.accelerationIncludingGravity.y * 10) / 10
     var az = Math.round(event.accelerationIncludingGravity.z * 10) / 10
 
-    maxX = Math.max(ax, maxX)
-    maxY = Math.max(ay, maxY)
-    maxZ = Math.max(az, maxZ)
-
-    document.querySelector(".werte").innerHTML = "X = " + maxX + "<br>" + "Y = " + maxY + "<br>" + "Z = " + maxZ;
+    document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
     if (ay > 6) {
         sleep(200)
         if (ay > 6) {
