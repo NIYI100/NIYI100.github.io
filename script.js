@@ -1,4 +1,4 @@
-import { Card, Deck } from "./deck.js"
+import { Deck } from "./deck.js"
 
 const computerHandSlot = document.querySelector(".computer-hand");
 const playerHandSlot = document.querySelector(".player-hand");
@@ -12,14 +12,12 @@ let drawPile = new Deck();
 let openCard;
 
 window.addEventListener("devicemotion", function (event) {
-    //var a = DeviceMotion(event)
     var ax = event.accelerationIncludingGravity.x
     var ay = event.accelerationIncludingGravity.y
     var az = event.accelerationIncludingGravity.z
 
-    document.querySelector(".computer-hand").innerHTML = ""
-    document.querySelector(".background-Computer").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
-
+    document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
+    /*
     if (ax > 100 || ay > 100 || az > 100) {
         playerHand.cards.forEach(card => {
             if (card.isChosen && card.isPlayable(openCard)) {
@@ -28,6 +26,7 @@ window.addEventListener("devicemotion", function (event) {
             }
         })
     }
+    */
 }, false);
 
 let accelerometer = null;
