@@ -68,10 +68,11 @@ export class Card {
 
 
         cardDiv.addEventListener("click", () => {
+            wasChosen = this.isChosen
             hand.cards.forEach(card => {
                 card.isChosen = false;
             });
-            this.isChosen = !this.isChosen
+            this.isChosen = !wasChosen
             renderBoard()
             return;
         });
