@@ -14,141 +14,106 @@ header {
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
-.background-Computer {
-    font-size: 50px;
-    text-align:start;
+
+.computer-text {
+    font-size: 3rem;
+    text-align:center;
     font-family: sans-serif;
-    grid-column: 1 / 6;
+    grid-column: 3;
     grid-row: 1;
+}
+
+.background-Computer {
+    grid-column: 1 / 6;
+    grid-row: 2;
     background-color: rgb(65, 63, 63);
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     border: 2px solid rgb(65, 63, 63);
 }
 .computer-hand {
-    grid-column: 2 / 6;
-    grid-row: 1;
-}
-#computer {
-    grid-column: 2 / 6;
-    grid-row: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    grid-column: 1 / 6;
+    grid-row: 2;
 }
 
 
 .background-playing-field {
     grid-column: 2;
-    grid-row: 2;
-    width: 170px;
+    grid-row: 3;
+    width: 7rem;
+    height: 7rem;
     background-color: #504c4c;
     border-radius: 1rem;
     border: 2px solid #504c4c;
 }
 .playing-field {
     position: relative;
-    left: 6%;
+    top: 0.5rem;
+    left: 1.5rem;
     grid-column: 2;
-    grid-row: 2;
-}
-#openCard {
-    position: relative;
-    left: 6%;
-    grid-column: 2;
-    grid-row: 2;
+    grid-row: 3;
 }
 
 
 .background-draw-pile {
     grid-column: 4;
-    grid-row: 2;
-    width: 170px;
+    grid-row: 3;
+    width: 7rem;
+    height: 7rem;
     background-color: #5c5959;
     border-radius: 1rem;
     border: 2px solid #5c5959;
 }
 .draw-pile {
     position: relative;
-    left: 9%;
-    top: 5%;
+    top: 0.5rem;
+    left: 1.5rem;
     grid-column: 4;
-    grid-row: 2;
+    grid-row: 3;
 }
 
+.player-text {
+    grid-column: 3;
+    grid-row: 4;
+    font-size: 3rem;
+    text-align:center;
+    font-family: sans-serif;
+}
 
 .background-player {
     grid-column: 1 / 6;
-    grid-row: 3;
-    font-size: 50px;
-    font-family: sans-serif;
+    grid-row: 5;
     background-color: rgb(80, 80, 80);
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     border: 2px solid rgb(80, 80, 80);
 }
 .player-hand {
-    grid-column: 2 / 6;
-    grid-row: 3;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    grid-column: 1 / 6;
+    grid-row: 5;
 }
 
-
-.computer-hand .card {
-    background-color: #eee;
-    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black),
-    linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black);
-    background-size: 60px 60px;
-    background-position: 0 0, 30px 30px;
-    border: 1px solid black;
-    border-radius: 0.5rem;
-    z-index: 100;
-    font-size: 0px;
-}
-
-.computer-hand .card::before,
-.computer-hand .card::after {
-    position: absolute;
-    font-size: 0.8rem;
-    line-height: normal;
-    opacity: 0;
-}
-
-.computer-hand .card::before {
-    top: 0.2rem;
-    left: 0.25rem;
-    opacity: 0;
-}
-
-.computer-hand .card::after {
-    bottom: 0.2rem;
-    right: 0.25rem;
-    opacity: 0;
-}
-
-
-.drawpilediv {
-    height: 150px;
-    width: 100px;
-    border: 1px solid black;    
-    border-radius: 0.5rem;
-    background-color: #eee;
-    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black),
-    linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black);
-    background-size: 60px 60px;
-    background-position: 0 0, 30px 30px;
-    z-index: 100;
-}
 
 
 
 .card {
+    display: inline-block;
+    margin: 2px;
+
     position: relative;
-    height: 100px;
-    width: 65px;
+    height: 6rem;
+    width: 4rem;
+
     border: 1px solid black;
     border-radius: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem;
-    line-height: 130px;
+
+
+    font-size: 2rem;
+    line-height: 300%;
     text-align: center;
     background-color: white;
-    z-index: 100;
 }
 
 .card.red {
@@ -164,7 +129,7 @@ header {
     position: absolute;
     content: attr(data-value);
     line-height: normal;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .card::before {
@@ -176,16 +141,18 @@ header {
     bottom: 0.5rem;
     right: 0.5rem;
     transform: rotate(180deg);
-    font-size: 20px;
 }
 
+.card-back {
+    border: 1px solid black;    
+    border-radius: 0.5rem;
+    background-color: #eee;
+    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black),
+    linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black);
+    background-size: 20px 20px;
+    background-position: 0 0, 30px 30px;
+}
+/*
 .card.dragging {
     opacity: .5;
-}
-
-.carddiv {
-    display: inline-block;
-    height: 150px;
-    width: 100px;
-    margin: 8px;
 }

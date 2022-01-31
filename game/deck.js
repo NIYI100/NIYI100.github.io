@@ -55,17 +55,22 @@ export class Card {
     getHTML(identifier, renderBoard, makeCardsUnclicked) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "card"
-        cardDiv.innerText = this.suit;
-        cardDiv.classList.add("card", this.color);
-        cardDiv.dataset.value = `${this.value} ${this.suit}`;
-        cardDiv.classList.add("carddiv");
-
-        if (this.isChosen) {
-            cardDiv.style.border = "3px solid yellow"
+        if (identifier == "computer") {
+            cardDiv.classList.add("card-back")
         } else {
-            cardDiv.style.border = "1px solid black"
+            cardDiv.innerText = this.suit;
+            cardDiv.classList.add("card", this.color);
+            cardDiv.dataset.value = `${this.value} ${this.suit}`;
+            if (this.isChosen) {
+                cardDiv.style.border = "3px solid yellow"
+            } else {
+                cardDiv.style.border = "1px solid black"
+            }
         }
 
+
+
+        /*
         if (identifier == "player") {
             cardDiv.draggable = true
             cardDiv.addEventListener("dragstart", () => {
@@ -76,10 +81,12 @@ export class Card {
                 renderBoard()
             })
         }
+        */
 
         cardDiv.addEventListener("click", () => {
+            let wasChosen = this.isChosen
             makeCardsUnclicked()
-            this.isChosen = true
+            this.isChosen = !wasChosen
             renderBoard()
         })
 

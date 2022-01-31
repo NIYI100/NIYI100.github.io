@@ -10,6 +10,7 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
+/*
 function getDragAfterElement(x) {
     const draggableElements = [...playerHandSlot.querySelectorAll('.card:not(.dragging)')]
 
@@ -23,7 +24,7 @@ function getDragAfterElement(x) {
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
-
+*/
 
 window.addEventListener("devicemotion", function (event) {
     var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
@@ -85,8 +86,9 @@ function renderBoard() {
         openCardSlot.appendChild(openCard.getHTML("openCard", () => { }, () => { }));
         drawPileSlot.appendChild(getDrawPileHTML());
 
+        /*
         let playerCards = document.getElementById("player")
-        //TODO Warum lädt das nicht?
+        //TODO Warum lädt das nicht? -> Auf Mobile kein darg and drop
         playerCards.addEventListener('dragover', e => {
             const afterElement = getDragAfterElement(e.clientX)
             const draggable = document.querySelector('.dragging')
@@ -97,6 +99,7 @@ function renderBoard() {
                 playerCards.insertBefore(draggable, afterElement)
             }
         })
+        */
     }
 }
 
@@ -119,9 +122,9 @@ function playCard(hand, card) {
 }
 
 function getDrawPileHTML() {
-
     const drawPileDiv = document.createElement("div");
-    drawPileDiv.classList.add("drawpilediv");
+    drawPileDiv.classList.add("card")
+    drawPileDiv.classList.add("card-back");
 
     drawPileDiv.addEventListener("click", () => {
 
