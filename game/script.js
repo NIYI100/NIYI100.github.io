@@ -32,7 +32,7 @@ window.addEventListener("devicemotion", function (event) {
     var az = Math.round(event.accelerationIncludingGravity.z * 10) / 10
 
     document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
-    if (ay > 12) {
+    if (ay > 13) {
         playerHand.cards.forEach(card => {
             if (card.isChosen && card.isPlayable(openCard)) {
                 playCardAndComputerTurn(card)
@@ -123,7 +123,7 @@ function playCard(hand, card) {
 
 function getDrawPileHTML() {
     const drawPileDiv = document.createElement("div");
-    drawPileDiv.classList.add("card")
+    //drawPileDiv.classList.add("card")
     drawPileDiv.classList.add("card-back");
 
     drawPileDiv.addEventListener("click", () => {
