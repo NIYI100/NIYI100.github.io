@@ -31,8 +31,8 @@ header {
     border: 2px solid rgb(65, 63, 63);
 }
 .computer-hand {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     grid-column: 1 / 6;
     grid-row: 2;
 }
