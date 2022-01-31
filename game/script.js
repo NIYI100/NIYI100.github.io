@@ -1,5 +1,4 @@
 import { Deck } from "./deck.js"
-import Shake from "./shake.js";
 
 const computerHandSlot = document.querySelector(".computer-hand");
 const playerHandSlot = document.querySelector(".player-hand");
@@ -11,6 +10,7 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
+var Shake = require('./shake.js')
 
 let shakeEvent = new Shake({ threshold: 15 });
 shakeEvent.start()
