@@ -10,12 +10,9 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
-var Shake = require('./shake.js')
-
-let shakeEvent = new Shake({ threshold: 15 });
+var Shake = require('shake.js')
+var shakeEvent = new Shake({ treshold: 15 })
 shakeEvent.start()
-
-
 
 window.addEventListener('shake', () => {
     shakeEvent.stop()
