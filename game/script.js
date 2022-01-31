@@ -17,7 +17,7 @@ shakeEvent.start()
 window.addEventListener('shake', () => {
     shakeEvent.stop()
     startGame()
-})
+}, false)
 
 
 window.addEventListener("devicemotion", function (event) {
