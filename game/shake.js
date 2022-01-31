@@ -18,7 +18,7 @@
 
     'use strict';
 
-    class Shake {
+    export class Shake {
         constructor(options) {
             //feature detect
             this.hasDeviceMotion = 'ondevicemotion' in window;
