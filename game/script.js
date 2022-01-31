@@ -1,15 +1,26 @@
 import { Deck } from "./deck.js"
+import Shake from "./shake.js";
 
 const computerHandSlot = document.querySelector(".computer-hand");
 const playerHandSlot = document.querySelector(".player-hand");
 const openCardSlot = document.querySelector(".playing-field");
 const drawPileSlot = document.querySelector(".draw-pile");
 
-
 let playerHand = new Deck();
 let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
+
+
+let shakeEvent = new Shake({ threshold: 15 });
+shakeEvent.start()
+
+
+
+window.addEventListener('shake', () => {
+    shakeEvent.stop()
+    startGame()
+})
 
 
 window.addEventListener("devicemotion", function (event) {
@@ -31,8 +42,6 @@ window.addEventListener("devicemotion", function (event) {
 
     }
 }, false);
-
-startGame();
 
 function startGame() {
     initiateBoard();
