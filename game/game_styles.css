@@ -163,6 +163,9 @@ header {
     font-size: 20px;
 }
 
+.card.dragging {
+    opacity: .5;
+}
 
 .carddiv {
     display: inline-block;

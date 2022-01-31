@@ -10,15 +10,40 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
-var Shake = require('shake.js')
-var shakeEvent = new Shake({ treshold: 15 })
-shakeEvent.start()
+/*
+playerHandSlot.addEventListener('dragover', e => {
+    e.preventDefault(e.clientX)
+    const afterElement = getDragAfterElement(playerHandSlot, e.clientX)
+    const draggable = document.querySelector('.dragging')
+    console.log("dragged:")
+    console.log(draggable)
+    console.log("after")
+    console.log(afterElement)
+    if (afterElement == null) {
+        playerHandSlot.appendChild(draggable)
+    } else {
+        playerHandSlot.insertBefore(draggable, afterElement)
+    }
 
-window.addEventListener('shake', () => {
-    shakeEvent.stop()
-    startGame()
-}, false)
 
+})
+
+function getDragAfterElement(playerHandSlot, x) {
+    const draggableElements = [...playerHandSlot.querySelectorAll('.card:not(.dragging)')]
+    console.log("not dragging")
+    console.log(draggableElements)
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect()
+        const offset = x - box.left - box.width / 2
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child }
+        } else {
+            return closest
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element
+}
+*/
 
 window.addEventListener("devicemotion", function (event) {
     var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
@@ -26,19 +51,19 @@ window.addEventListener("devicemotion", function (event) {
     var az = Math.round(event.accelerationIncludingGravity.z * 10) / 10
 
     document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
-    if (ay > 6) {
-        sleep(200)
-        if (ay > 6) {
-            playerHand.cards.forEach(card => {
-                if (card.isChosen && card.isPlayable(openCard)) {
-                    playCardAndComputerTurn(card)
-                    return;
-                }
-            })
-        }
+    if (ay > 12) {
+        playerHand.cards.forEach(card => {
+            if (card.isChosen && card.isPlayable(openCard)) {
+                playCardAndComputerTurn(card)
+                return;
+            }
+        })
+
 
     }
 }, false);
+
+startGame()
 
 function startGame() {
     initiateBoard();
@@ -77,9 +102,9 @@ function renderBoard() {
         openCardSlot.innerHTML = "";
         drawPileSlot.innerHTML = "";
 
-        playerHandSlot.appendChild(playerHand.getHTML(renderBoard));
-        computerHandSlot.appendChild(computerHand.getHTML(renderBoard));
-        openCardSlot.appendChild(openCard.getHTML(computerHand, () => { openCard.wasChosen = false; }));
+        playerHandSlot.appendChild(playerHand.getHTML(renderBoard, "player-hand"));
+        computerHandSlot.appendChild(computerHand.getHTML(renderBoard, "computer-hand"));
+        openCardSlot.appendChild(openCard.getHTML(computerHand, () => { openCard.wasChosen = false; }, "openCard"));
         drawPileSlot.appendChild(getDrawPileHTML());
     }
 }

@@ -25,11 +25,12 @@ export class Deck {
         }
     }
 
-    getHTML(renderBoard) {
+    getHTML(renderBoard, identifier) {
         const handDiv = document.createElement("div");
+        handDiv.className = identifier
         for (let i = 0; i < this.cards.length; i++) {
             const newCard = this.cards[i];
-            handDiv.appendChild(newCard.getHTML(this, renderBoard));
+            handDiv.appendChild(newCard.getHTML(this, renderBoard, identifier));
         }
 
         return handDiv;
@@ -52,7 +53,7 @@ export class Card {
         return this.suit === '♠' || this.suit === '♣' ? 'black' : 'red'
     }
 
-    getHTML(hand, renderBoard) {
+    getHTML(hand, renderBoard, identifier) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "card"
         cardDiv.innerText = this.suit;
@@ -64,6 +65,17 @@ export class Card {
             cardDiv.style.border = "3px solid yellow"
         } else {
             cardDiv.style.border = "1px solid black"
+        }
+
+        if (identifier == "player-hand") {
+            cardDiv.draggable = true;
+            cardDiv.addEventListener("dragstart", () => {
+                cardDiv.classList.add('dragging')
+            })
+            cardDiv.addEventListener("dragend", () => {
+                cardDiv.classList.remove('dragging')
+                renderBoard()
+            })
         }
 
 
