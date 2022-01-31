@@ -87,11 +87,6 @@ header {
     grid-row: 3;
 }
 
-#player {
-    grid-column: 2 / 6;
-    grid-row: 3;    
-}
-
 
 .computer-hand .card {
     background-color: #eee;

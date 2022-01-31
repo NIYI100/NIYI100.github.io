@@ -26,25 +26,14 @@ export class Deck {
     }
 
     getHTML(identifier, renderBoard, makeCardsUnclicked) {
-        const handDiv = document.getElementById(identifier)
+        const handDiv = document.createElement('div')
+        handDiv.setAttribute('id', identifier)
         this.cards.forEach(card => {
             handDiv.appendChild(card.getHTML(identifier, renderBoard, makeCardsUnclicked))
         })
 
         return handDiv;
     }
-    /*
-    getHTML(renderBoard, identifier) {
-        const handDiv = document.getElementById("player")
-        handDiv.className = identifier
-        for (let i = 0; i < this.cards.length; i++) {
-            const newCard = this.cards[i];
-            handDiv.appendChild(newCard.getHTML(this.cardEvent, renderBoard, identifier));
-        }
-
-        return handDiv;
-    }
-    */
 
 }
 
@@ -96,38 +85,6 @@ export class Card {
 
         return cardDiv
     }
-
-    /*
-    getHTML(cardEvent, renderBoard, identifier) {
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "card"
-        cardDiv.innerText = this.suit;
-        cardDiv.classList.add("card", this.color);
-        cardDiv.dataset.value = `${this.value} ${this.suit}`;
-        cardDiv.classList.add("carddiv");
-
-        if (this.isChosen) {
-            cardDiv.style.border = "3px solid yellow"
-        } else {
-            cardDiv.style.border = "1px solid black"
-        }
-
-        if (identifier == "player-hand") {
-            cardDiv.draggable = true;
-            cardDiv.addEventListener("dragstart", () => {
-                cardDiv.classList.add('dragging')
-            })
-            cardDiv.addEventListener("dragend", () => {
-                cardDiv.classList.remove('dragging')
-                renderBoard()
-            })
-        }
-
-
-        cardDiv.addEventListener("click", cardEvent(this, renderBoard));
-        return cardDiv;
-    }
-    */
 
     isPlayable(openCard) {
         return (this.value === openCard.value || this.suit === openCard.suit)

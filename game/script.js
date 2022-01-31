@@ -10,28 +10,8 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
-
-playerHandSlot.addEventListener('dragover', e => {
-    e.preventDefault(e.clientX)
-    const afterElement = getDragAfterElement(playerHandSlot, e.clientX)
-    const draggable = document.querySelector('.dragging')
-    console.log("dragged:")
-    console.log(draggable)
-    console.log("after")
-    console.log(afterElement)
-    if (afterElement == null) {
-        playerHandSlot.appendChild(draggable)
-    } else {
-        playerHandSlot.insertBefore(draggable, afterElement)
-    }
-
-
-})
-
-function getDragAfterElement(playerHandSlot, x) {
+function getDragAfterElement(x) {
     const draggableElements = [...playerHandSlot.querySelectorAll('.card:not(.dragging)')]
-    console.log("not dragging")
-    console.log(draggableElements)
 
     return draggableElements.reduce((closest, child) => {
         const box = child.getBoundingClientRect()
@@ -85,7 +65,6 @@ function initiateBoard() {
     playerHand.cards = drawPile.cards.slice(5, 9);
     drawPile.cards = drawPile.cards.slice(9, drawPile.length);
 
-
 }
 
 function renderBoard() {
@@ -95,6 +74,7 @@ function renderBoard() {
         return;
     }
     else {
+
         playerHandSlot.innerHTML = "";
         computerHandSlot.innerHTML = "";
         openCardSlot.innerHTML = "";
@@ -104,6 +84,19 @@ function renderBoard() {
         computerHandSlot.appendChild(computerHand.getHTML("computer", renderBoard, makeCardsUnclicked));
         openCardSlot.appendChild(openCard.getHTML("openCard", () => { }, () => { }));
         drawPileSlot.appendChild(getDrawPileHTML());
+
+        let playerCards = document.getElementById("player")
+        //TODO Warum lädt das nicht?
+        playerCards.addEventListener('dragover', e => {
+            const afterElement = getDragAfterElement(e.clientX)
+            const draggable = document.querySelector('.dragging')
+            console.log(afterElement)
+            if (afterElement == null) {
+                playerCards.appendChild(draggable)
+            } else {
+                playerCards.insertBefore(draggable, afterElement)
+            }
+        })
     }
 }
 
