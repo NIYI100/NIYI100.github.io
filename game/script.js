@@ -10,7 +10,7 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
-/*
+
 playerHandSlot.addEventListener('dragover', e => {
     e.preventDefault(e.clientX)
     const afterElement = getDragAfterElement(playerHandSlot, e.clientX)
@@ -43,7 +43,7 @@ function getDragAfterElement(playerHandSlot, x) {
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
-*/
+
 
 window.addEventListener("devicemotion", function (event) {
     var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
@@ -63,6 +63,13 @@ window.addEventListener("devicemotion", function (event) {
     }
 }, false);
 
+function playCardAndComputerTurn(card) {
+    sleep(300)
+    playCard(playerHand, card)
+    renderBoard();
+    computerTurn()
+}
+
 startGame()
 
 function startGame() {
@@ -72,20 +79,11 @@ function startGame() {
 
 function initiateBoard() {
     drawPile.freshDeck();
-    console.log("Frisched Deck:")
-    console.log(drawPile)
-    drawPile.shuffle();
-    console.log("Gemischtes Deck:")
-    console.log(drawPile)
 
     openCard = drawPile.cards[0];
     computerHand.cards = drawPile.cards.slice(1, 5);
     playerHand.cards = drawPile.cards.slice(5, 9);
-    console.log("Ausgeteilte Karten:")
-    console.log(openCard + computerHand + playerHand)
     drawPile.cards = drawPile.cards.slice(9, drawPile.length);
-    console.log("Restliches Deck:")
-    console.log(drawPile)
 
 
 }
@@ -102,18 +100,17 @@ function renderBoard() {
         openCardSlot.innerHTML = "";
         drawPileSlot.innerHTML = "";
 
-        playerHandSlot.appendChild(playerHand.getHTML(renderBoard, "player-hand"));
-        computerHandSlot.appendChild(computerHand.getHTML(renderBoard, "computer-hand"));
-        openCardSlot.appendChild(openCard.getHTML(computerHand, () => { openCard.wasChosen = false; }, "openCard"));
+        playerHandSlot.appendChild(playerHand.getHTML("player", renderBoard, makeCardsUnclicked));
+        computerHandSlot.appendChild(computerHand.getHTML("computer", renderBoard, makeCardsUnclicked));
+        openCardSlot.appendChild(openCard.getHTML("openCard", () => { }, () => { }));
         drawPileSlot.appendChild(getDrawPileHTML());
     }
 }
 
-function playCardAndComputerTurn(card) {
-    sleep(300)
-    playCard(playerHand, card)
-    renderBoard();
-    computerTurn()
+function makeCardsUnclicked() {
+    playerHand.cards.forEach(card => {
+        card.isChosen = false;
+    })
 }
 
 function playCard(hand, card) {
