@@ -25,11 +25,11 @@ export class Deck {
         }
     }
 
-    getHTML(identifier, renderBoard, makeCardsUnclicked) {
+    getHTML(identifier, highliteCard) {
         const handDiv = document.createElement('div')
         handDiv.setAttribute('id', identifier)
         this.cards.forEach(card => {
-            handDiv.appendChild(card.getHTML(identifier, renderBoard, makeCardsUnclicked))
+            handDiv.appendChild(card.getHTML(identifier, highliteCard))
         })
 
         return handDiv;
@@ -52,10 +52,10 @@ export class Card {
         return this.suit === '♠' || this.suit === '♣' ? 'black' : 'red'
     }
 
-    getHTML(identifier, renderBoard, makeCardsUnclicked) {
+    getHTML(identifier, highliteCard) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "card"
-        if (identifier == "computer") {
+        if (identifier == "compublabalter") {
             cardDiv.classList.add("card-back")
         } else {
             cardDiv.innerText = this.suit;
@@ -69,10 +69,7 @@ export class Card {
         }
 
         cardDiv.addEventListener("click", () => {
-            let wasChosen = this.isChosen
-            makeCardsUnclicked()
-            this.isChosen = !wasChosen
-            renderBoard()
+            highliteCard(this)
         })
 
         return cardDiv

@@ -17,6 +17,7 @@ h1 {
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  justify-content:center;
 }
 
 .computer-text {
@@ -59,18 +60,20 @@ h1 {
     grid-row: 3;
 }
 
-button {
-    display: block;
-    margin: auto;
-    font-size: large;
-    width: 6rem;
-    height: 2rem;
-}
-
 .options {
+    display: flex;
+    justify-content: center;
     align-items: center;
     grid-column: 3;
     grid-row: 3;
+}
+
+button {
+    display: block;
+    margin: 4px;
+    font-size: large;
+    width: 6rem;
+    height: 2rem;
 }
 
 
