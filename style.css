@@ -17,7 +17,6 @@ h1 {
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  justify-content:center;
 }
 
 .computer-text {
@@ -69,6 +68,7 @@ h1 {
 }
 
 button {
+    position: relative;
     display: block;
     margin: 4px;
     font-size: large;
@@ -76,8 +76,37 @@ button {
     height: 2rem;
 }
 
+@media (max-width: 1000px) {
+    .options {
+        align-items: center;
+        align-content: center;
+        grid-column: 3;
+        grid-row: 3;
+        display: grid;
+        grid-row: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    button {
+        left: 25%;
+    }
+
+    #restart {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    #anleitung {
+        grid-row: 2;
+        grid-column: 1;
+    }
+}
+
 
 .background-draw-pile {
+    position: relative;
+    left: 55%;
     grid-column: 4;
     grid-row: 3;
     width: 7rem;
@@ -88,8 +117,8 @@ button {
 }
 .draw-pile {
     position: relative;
+    left: 63.5%;
     top: 0.5rem;
-    left: 1.5rem;
     grid-column: 4;
     grid-row: 3;
 }
