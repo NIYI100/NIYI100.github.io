@@ -10,22 +10,6 @@ let computerHand = new Deck();
 let drawPile = new Deck();
 let openCard;
 
-/*
-function getDragAfterElement(x) {
-    const draggableElements = [...playerHandSlot.querySelectorAll('.card:not(.dragging)')]
-
-    return draggableElements.reduce((closest, child) => {
-        const box = child.getBoundingClientRect()
-        const offset = x - box.left - box.width / 2
-        if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child }
-        } else {
-            return closest
-        }
-    }, { offset: Number.NEGATIVE_INFINITY }).element
-}
-*/
-
 window.addEventListener("devicemotion", function (event) {
     var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
     var ay = Math.round(event.accelerationIncludingGravity.y * 10) / 10
@@ -85,21 +69,6 @@ function renderBoard() {
         computerHandSlot.appendChild(computerHand.getHTML("computer", renderBoard, makeCardsUnclicked));
         openCardSlot.appendChild(openCard.getHTML("openCard", () => { }, () => { }));
         drawPileSlot.appendChild(getDrawPileHTML());
-
-        /*
-        let playerCards = document.getElementById("player")
-        //TODO Warum lädt das nicht? -> Auf Mobile kein darg and drop
-        playerCards.addEventListener('dragover', e => {
-            const afterElement = getDragAfterElement(e.clientX)
-            const draggable = document.querySelector('.dragging')
-            console.log(afterElement)
-            if (afterElement == null) {
-                playerCards.appendChild(draggable)
-            } else {
-                playerCards.insertBefore(draggable, afterElement)
-            }
-        })
-        */
     }
 }
 
@@ -123,7 +92,7 @@ function playCard(hand, card) {
 
 function getDrawPileHTML() {
     const drawPileDiv = document.createElement("div");
-    //drawPileDiv.classList.add("card")
+    drawPileDiv.classList.add("card")
     drawPileDiv.classList.add("card-back");
 
     drawPileDiv.addEventListener("click", () => {
@@ -199,3 +168,11 @@ function checkIfGameIsOver() {
 
     return 3;
 }
+
+document.getElementById("restart").addEventListener("click", () => {
+    startGame()
+})
+
+document.getElementById("anleitung").addEventListener("click", () => {
+    window.alert("Hier ist dei Anelitung \n Das hier ist in einer neun Zeile")
+})
