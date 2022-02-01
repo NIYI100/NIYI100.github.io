@@ -16,7 +16,10 @@ document.getElementById("sortHand").addEventListener("click", () => {
 window.addEventListener("devicemotion", function (event) {
     playerHand.cards.forEach(card => {
         if (event.accelerationIncludingGravity.y > 13) {
-            if (card.isChosen && card.isPlayable(openCard)) {
+            if (card.value == "A") {
+                playCardAndComputerTurn(card)
+                return
+            } else if (card.isChosen && card.isPlayable(openCard)) {
                 if (card.value == "8") {
                     playerPlayedEight = true
                     playCardAndComputerTurn(card)
