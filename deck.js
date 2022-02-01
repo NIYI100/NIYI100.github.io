@@ -68,21 +68,6 @@ export class Card {
             }
         }
 
-
-
-        /*
-        if (identifier == "player") {
-            cardDiv.draggable = true
-            cardDiv.addEventListener("dragstart", () => {
-                cardDiv.classList.add('dragging')
-            })
-            cardDiv.addEventListener("dragend", () => {
-                cardDiv.classList.remove('dragging')
-                renderBoard()
-            })
-        }
-        */
-
         cardDiv.addEventListener("click", () => {
             let wasChosen = this.isChosen
             makeCardsUnclicked()

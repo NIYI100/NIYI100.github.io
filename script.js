@@ -169,6 +169,7 @@ function checkIfGameIsOver() {
     return 3;
 }
 
+/*
 document.getElementById("restart").addEventListener("click", () => {
     startGame()
 })
@@ -176,3 +177,4 @@ document.getElementById("restart").addEventListener("click", () => {
 document.getElementById("anleitung").addEventListener("click", () => {
     window.alert("Hier ist dei Anelitung \n Das hier ist in einer neun Zeile")
 })
+*/
