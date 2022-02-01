@@ -1,22 +1,15 @@
 import { Deck } from "./deck.js"
 
-const computerHandSlot = document.querySelector(".computer-hand");
-const playerHandSlot = document.querySelector(".player-hand");
-const openCardSlot = document.querySelector(".playing-field");
-const drawPileSlot = document.querySelector(".draw-pile");
+document.getElementById("restart").addEventListener("click", () => {
+    startGame()
+})
 
-let playerHand = new Deck();
-let computerHand = new Deck();
-let drawPile = new Deck();
-let openCard;
+document.getElementById("anleitung").addEventListener("click", () => {
+    window.alert("Hier ist dei Anelitung \n Das hier ist in einer neun Zeile")
+})
 
 window.addEventListener("devicemotion", function (event) {
-    var ax = Math.round(event.accelerationIncludingGravity.x * 10) / 10
-    var ay = Math.round(event.accelerationIncludingGravity.y * 10) / 10
-    var az = Math.round(event.accelerationIncludingGravity.z * 10) / 10
-
-    document.querySelector(".werte").innerHTML = "X = " + ax + "<br>" + "Y = " + ay + "<br>" + "Z = " + az;
-    if (ay > 13) {
+    if (event.accelerationIncludingGravity.y > 13) {
         playerHand.cards.forEach(card => {
             if (card.isChosen && card.isPlayable(openCard)) {
                 playCardAndComputerTurn(card)
@@ -28,14 +21,21 @@ window.addEventListener("devicemotion", function (event) {
     }
 }, false);
 
-function playCardAndComputerTurn(card) {
-    sleep(300)
-    playCard(playerHand, card)
-    renderBoard();
-    computerTurn()
-}
+
+
+const computerHandSlot = document.querySelector(".computer-hand");
+const playerHandSlot = document.querySelector(".player-hand");
+const openCardSlot = document.querySelector(".playing-field");
+const drawPileSlot = document.querySelector(".draw-pile");
+
+let playerHand = new Deck();
+let computerHand = new Deck();
+let drawPile = new Deck();
+let openCard;
 
 startGame()
+
+
 
 function startGame() {
     initiateBoard();
@@ -49,26 +49,22 @@ function initiateBoard() {
     computerHand.cards = drawPile.cards.slice(1, 5);
     playerHand.cards = drawPile.cards.slice(5, 9);
     drawPile.cards = drawPile.cards.slice(9, drawPile.length);
-
 }
 
 function renderBoard() {
-    let gamestatus = checkIfGameIsOver();
-    if (gamestatus == 0 || gamestatus == 1 || gamestatus == 2) {
+    playerHandSlot.innerHTML = "";
+    computerHandSlot.innerHTML = "";
+    openCardSlot.innerHTML = "";
+    drawPileSlot.innerHTML = "";
+
+    playerHandSlot.appendChild(playerHand.getHTML("player", renderBoard, makeCardsUnclicked));
+    computerHandSlot.appendChild(computerHand.getHTML("computer", renderBoard, makeCardsUnclicked));
+    openCardSlot.appendChild(openCard.getHTML("openCard", () => { }, () => { }));
+    drawPileSlot.appendChild(getDrawPileHTML());
+
+    if (checkIfGameIsOver()) {
         startGame()
         return;
-    }
-    else {
-
-        playerHandSlot.innerHTML = "";
-        computerHandSlot.innerHTML = "";
-        openCardSlot.innerHTML = "";
-        drawPileSlot.innerHTML = "";
-
-        playerHandSlot.appendChild(playerHand.getHTML("player", renderBoard, makeCardsUnclicked));
-        computerHandSlot.appendChild(computerHand.getHTML("computer", renderBoard, makeCardsUnclicked));
-        openCardSlot.appendChild(openCard.getHTML("openCard", () => { }, () => { }));
-        drawPileSlot.appendChild(getDrawPileHTML());
     }
 }
 
@@ -78,8 +74,14 @@ function makeCardsUnclicked() {
     })
 }
 
-function playCard(hand, card) {
+function playCardAndComputerTurn(card) {
+    sleep(300)
+    playCard(playerHand, card)
+    renderBoard();
+    computerTurn()
+}
 
+function playCard(hand, card) {
     card.isChosen = false;
     openCard = card;
 
@@ -96,16 +98,12 @@ function getDrawPileHTML() {
     drawPileDiv.classList.add("card-back");
 
     drawPileDiv.addEventListener("click", () => {
-
         let noCardPlayable = true;
-
         for (let index = 0; index < playerHand.length; index++) {
-
             if (playerHand[index].isPlayable(openCard)) {
                 noCardPlayable = false;
             }
         }
-
         if (noCardPlayable == true) {
             drawCard(playerHand);
             playerHand.cards.forEach(card => {
@@ -115,15 +113,12 @@ function getDrawPileHTML() {
             computerTurn();
         }
     });
-
     return drawPileDiv;
 }
 
 function drawCard(hand) {
-
     let newCard = drawPile.cards.pop();
     hand.cards.push(newCard);
-
     renderBoard();
 }
 
@@ -147,32 +142,18 @@ function sleep(milliseconds) {
 }
 
 function checkIfGameIsOver() {
-
     if (playerHand.cards.length == 0) {
-        window.alert("You have won! Congratulation!");
-
-        return 0;
-
+        window.alert("You won! Congratulations!");
+        return true;
     }
     else if (computerHand.cards.length == 0) {
-        window.alert("Oh no! The computer have won!");
-
-        return 1;
-
+        window.alert("Oh no! The Computer won!");
+        return true;
     }
     else if (drawPile.cards.length == 0) {
-        window.alert("There are no more cards. No one has won!");
-
-        return 2;
+        window.alert("There are no Cards left! It`s a draw.");
+        return true;
+    } else {
+        return false;
     }
-
-    return 3;
 }
-
-document.getElementById("restart").addEventListener("click", () => {
-    startGame()
-})
-
-document.getElementById("anleitung").addEventListener("click", () => {
-    window.alert("Hier ist dei Anelitung \n Das hier ist in einer neun Zeile")
-})
