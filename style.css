@@ -131,6 +131,13 @@ button {
     font-family: sans-serif;
 }
 
+#sortHand {
+    top: 80%;
+    position: relative;
+    grid-column: 4;
+    grid-row: 4;
+}
+
 .background-player {
     grid-column: 1 / 6;
     grid-row: 5;

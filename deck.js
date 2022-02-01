@@ -35,6 +35,37 @@ export class Deck {
         return handDiv;
     }
 
+    sort() {
+        let heartArray = []
+        let pikArray = []
+        let caroArray = []
+        let crossArray = []
+        let sortedCards = []
+        for (let i = 0; i < this.cards.length; i++) {
+            switch (this.cards[i].suit) {
+                case "♥":
+                    heartArray.push(this.cards[i])
+                    break;
+                case "♠":
+                    pikArray.push(this.cards[i])
+                    break;
+                case "♦":
+                    caroArray.push(this.cards[i])
+                    break;
+                default:
+                    crossArray.push(this.cards[i])
+                    break;
+            }
+        }
+        sortedCards.push.apply(sortedCards, bubbleSort(heartArray))
+        sortedCards.push.apply(sortedCards, bubbleSort(pikArray))
+        sortedCards.push.apply(sortedCards, bubbleSort(caroArray))
+        sortedCards.push.apply(sortedCards, bubbleSort(crossArray))
+
+        this.cards = sortedCards
+    }
+
+
 }
 
 export class Card {
@@ -55,7 +86,7 @@ export class Card {
     getHTML(identifier, highliteCard) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "card"
-        if (identifier == "compublabalter") {
+        if (identifier == "computer") {
             cardDiv.classList.add("card-back")
         } else {
             cardDiv.innerText = this.suit;
@@ -79,3 +110,16 @@ export class Card {
         return (this.value === openCard.value || this.suit === openCard.suit)
     }
 }
+
+function bubbleSort(cards) {
+    for (let i = 0; i < cards.length; i++) {
+        for (let j = 0; j < cards.length - i - 1; j++) {
+
+
+            if (cards[j + 1].value < cards[j].value) {
+                [cards[j + 1], cards[j]] = [cards[j], cards[j + 1]]
+            }
+        }
+    }
+    return cards;
+};

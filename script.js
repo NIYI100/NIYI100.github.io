@@ -8,6 +8,11 @@ document.getElementById("anleitung").addEventListener("click", () => {
     window.alert("Ziel des Spiels ist es seine Handkarten loszuwerden.\nSie wechseln sich im Zug mit einem Computergegner ab. Es kann jeweils eine Karte gespielt werden, die entweder die selbe Wertigkeit (3, 7, A) oder die selbe Farbe (♥, ♠) hat.\n\nWenn Sie keine Karte auspielen können oder nicht wollen, können Sie stattdessen auch eine Karte ziehen. Um eine Karte auszuspielen, klicken Sie auf diese und bewegen Sie Ihr Handy ruckartig nach vorne.")
 })
 
+document.getElementById("sortHand").addEventListener("click", () => {
+    playerHand.sort()
+    renderBoard()
+})
+
 window.addEventListener("devicemotion", function (event) {
     playerHand.cards.forEach(card => {
         if (event.accelerationIncludingGravity.y > 13) {
