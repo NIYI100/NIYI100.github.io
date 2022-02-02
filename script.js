@@ -219,8 +219,6 @@ function playSevenIfPossible() {
     for (let index = 0; index < computerHand.cards.length; index++) {
         let card = computerHand.cards[index];
         if (card.value == "7") {
-            lastCardSeven = true
-            howManyToDraw += 2
             playCard(computerHand, card)
             return;
         }
