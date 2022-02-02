@@ -193,7 +193,7 @@ async function computerTurn() {
             if (card.isPlayable(openCard)) {
                 playCard(computerHand, card);
                 if (card.value == "8") {
-                    sleep(1000)
+                    sleep(4000)
                     computerTurn()
                 }
                 console.log(openCard)
@@ -224,6 +224,7 @@ function playSevenIfPossible() {
     for (let i = 0; i < howManyToDraw; i++) {
         drawCard(computerHand)
     }
+    howManyToDraw = 0;
 }
 
 function sleep(milliseconds) {
