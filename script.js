@@ -197,7 +197,7 @@ async function computerTurn() {
             if (card.isPlayable(openCard)) {
                 playCard(computerHand, card);
                 if (card.value == "8") {
-                    await sleep(4000)
+                    await sleep(1500)
                     computerTurn()
                 }
                 console.log(openCard)
