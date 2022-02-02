@@ -16,18 +16,21 @@ document.getElementById("sortHand").addEventListener("click", () => {
 window.addEventListener("devicemotion", function (event) {
     playerHand.cards.forEach(card => {
         if (event.accelerationIncludingGravity.y > 13) {
-            if (card.value == "A") {
-                playCardAndComputerTurn(card)
-                return
-            } else if (card.isChosen && card.isPlayable(openCard)) {
+            if (card.isChosen) {
                 if (lastCardSeven) {
                     if (card.value == "7") {
                         playCardAndComputerTurn(card)
                         return
                     }
-                } else {
-                    if (card.value == "8") {
+                } else if (card.value == "A") {
+                    playCardAndComputerTurn(card)
+                    return
+                } else if (card.isPlayable(openCard)) {
+                    if (card.value = "8") {
                         playerPlayedEight = true
+                        playCardAndComputerTurn(card)
+                        return
+                    } else {
                         playCardAndComputerTurn(card)
                         return
                     }
