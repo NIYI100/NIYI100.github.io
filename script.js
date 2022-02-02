@@ -27,9 +27,7 @@ window.addEventListener("devicemotion", function (event) {
                     return
                 } else if (card.isPlayable(openCard)) {
                     if (card.value = "8") {
-                        playerPlayedEight = true
-                        playCardAndComputerTurn(card)
-                        return
+                        playCard(playerHand, card)
                     } else {
                         playCardAndComputerTurn(card)
                         return
@@ -55,7 +53,6 @@ let openCard;
 
 let lastCardSeven
 let howManyToDraw
-let playerPlayedEight
 
 startGame()
 
@@ -81,7 +78,6 @@ function initiateBoard() {
 
     lastCardSeven = false
     howManyToDraw = 0
-    playerPlayedEight = false
 }
 
 function renderBoard() {
@@ -182,9 +178,6 @@ async function computerTurn() {
     if (lastCardSeven) {
         lastCardSeven = false
         playSevenIfPossible()
-        //Do nothing
-    } else if (playerPlayedEight) {
-        playerPlayedEight = false
         //normal turn
     } else {
         let assIndex = null
