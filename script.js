@@ -191,7 +191,7 @@ async function computerTurn() {
             if (card.isPlayable(openCard)) {
                 playCard(computerHand, card);
                 if (card.value == "8") {
-                    computerTurn()
+                    //computerTurn()
                 }
                 return;
             }
