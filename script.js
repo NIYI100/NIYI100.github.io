@@ -20,17 +20,17 @@ window.addEventListener("devicemotion", function (event) {
                 playCardAndComputerTurn(card)
                 return
             } else if (card.isChosen && card.isPlayable(openCard)) {
-                if (card.value == "8") {
-                    playerPlayedEight = true
-                    playCardAndComputerTurn(card)
-                    return
-                }
-                if (!lastCardSeven) {
-                    playCardAndComputerTurn(card)
-                    return
-                } else if (card.value == "7") {
-                    playCardAndComputerTurn(card)
-                    return
+                if (lastCardSeven) {
+                    if (card.value == "7") {
+                        playCardAndComputerTurn(card)
+                        return
+                    }
+                } else {
+                    if (card.value == "8") {
+                        playerPlayedEight = true
+                        playCardAndComputerTurn(card)
+                        return
+                    }
                 }
             }
         }
@@ -118,8 +118,6 @@ function playCard(hand, card) {
     if (card.value == "7") {
         lastCardSeven = true
         howManyToDraw += 2
-        console.log("Computer played 7")
-        console.log(howManyToDraw)
     }
     for (let i = 0; i < hand.cards.length; i++) {
         if (hand.cards[i] == card) {
@@ -200,7 +198,6 @@ async function computerTurn() {
                     await sleep(500)
                     computerTurn()
                 }
-                console.log(openCard)
                 return;
             }
         }
