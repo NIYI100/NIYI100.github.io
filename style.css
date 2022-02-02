@@ -9,6 +9,8 @@ header {
 }
 
 h1 {
+    grid-row: 1;
+    grid-column: 2;
     text-align: center;
 }
 
@@ -19,17 +21,19 @@ h1 {
   grid-auto-rows: repeat(5, 1fr)
 }
 
+
+
 .computer-text {
     font-size: 3rem;
     text-align:center;
     font-family: sans-serif;
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .background-Computer {
     grid-column: 1 / 4;
-    grid-row: 2;
+    grid-row: 3;
     background-color: rgb(65, 63, 63);
     border-radius: 1.5rem;
     border: 2px solid rgb(65, 63, 63);
@@ -38,13 +42,13 @@ h1 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     grid-column: 1 / 4;
-    grid-row: 2;
+    grid-row: 3;
 }
 
 
 .background-playing-field {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
     width: 7rem;
     height: 7rem;
     background-color: #504c4c;
@@ -56,7 +60,7 @@ h1 {
     top: 0.5rem;
     left: 1.5rem;
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
 }
 
 .options {
@@ -64,13 +68,12 @@ h1 {
     justify-content: center;
     align-items: center;
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 4;
 }
 
 button {
     display: block;
     margin: 4px;
-    font-size: large;
     width: 6rem;
     height: 2rem;
 }
@@ -80,7 +83,7 @@ button {
     position: relative;
     left: 55%;
     grid-column: 3;
-    grid-row: 3;
+    grid-row: 4;
     width: 7rem;
     height: 7rem;
     background-color: #5c5959;
@@ -92,7 +95,7 @@ button {
     left: 62%;
     top: 0.5rem;
     grid-column: 3;
-    grid-row: 3;
+    grid-row: 4;
 }
 
 #sortHand {
@@ -100,7 +103,7 @@ button {
     top: 5%;
     position: relative;
     grid-column: 3;
-    grid-row: 5;
+    grid-row: 6;
 }
 
 @media (max-width: 1000px) {
@@ -127,7 +130,7 @@ button {
     position: relative;
     left: 0%;
     grid-column: 3;
-    grid-row: 3;
+    grid-row: 4;
     width: 7rem;
     height: 7rem;
     background-color: #5c5959;
@@ -139,13 +142,13 @@ button {
     left: 1.5rem;
     top:0.5rem;
     grid-column: 3;
-    grid-row: 3;
+    grid-row: 4;
     }
 
     #sortHand {
         left: 1rem;
         grid-column: 3;
-        grid-row: 5;
+        grid-row: 6;
     }
 }
 
@@ -153,7 +156,7 @@ button {
 
 .player-text {
     grid-column: 2;
-    grid-row: 5;
+    grid-row: 6;
     font-size: 3rem;
     text-align: center;
     font-family: sans-serif;
@@ -161,7 +164,7 @@ button {
 
 .background-player {
     grid-column: 1 / 5;
-    grid-row: 4;
+    grid-row: 5;
     background-color: rgb(80, 80, 80);
     border-radius: 1.5rem;
     border: 2px solid rgb(80, 80, 80);
@@ -170,7 +173,7 @@ button {
     margin-left: 1rem;
     margin-right: 1rem;
     grid-column: 1 / 5;
-    grid-row: 4;
+    grid-row: 5;
 }
 
 

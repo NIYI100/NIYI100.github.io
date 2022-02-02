@@ -5,7 +5,7 @@ document.getElementById("restart").addEventListener("click", () => {
 })
 
 document.getElementById("anleitung").addEventListener("click", () => {
-    window.alert("Ziel des Spiels ist es seine Handkarten loszuwerden.\nSie wechseln sich im Zug mit einem Computergegner ab. Es kann jeweils eine Karte gespielt werden, die entweder die selbe Wertigkeit (3, 7, A) oder die selbe Farbe (♥, ♠) hat.\n\nWenn Sie keine Karte auspielen können oder nicht wollen, können Sie stattdessen auch eine Karte ziehen. Um eine Karte auszuspielen, klicken Sie auf diese und bewegen Sie Ihr Handy ruckartig nach vorne.")
+    window.alert("Ziel des Spiels ist es seine Handkarten loszuwerden.\nSie wechseln sich im Zug mit einem Computergegner ab.\n\nKarte ausspielen:\nKlicken Sie auf die Karte und bewegen Sie danach Ihr Handy ruckartig nach vorne.\nDie auszuspielende Karte muss die selbe Wertigkeit oder Spielkartenfarbe wie die offene Karte haben.\n\nKarte ziehen:\nUm eine Karte zu ziehen drücken Sie auf den verdeckten Nachziehstapel.\nIhr Zug endet danach.\n\n Sonderregeln:\n   7: 2 Karten ziehen. Stapelbar.\n   8: Der Gegner muss aussetzen.\n   A: Joker: Darf auf jede beliebige Karte gelegt werden.")
 })
 
 document.getElementById("sortHand").addEventListener("click", () => {
@@ -235,15 +235,15 @@ function sleep(milliseconds) {
 
 function checkIfGameIsOver() {
     if (playerHand.cards.length == 0) {
-        window.alert("You won! Congratulations!");
+        window.alert("Du hast gewonnen! Herzlichen Glückwunsch.");
         return true;
     }
     else if (computerHand.cards.length == 0) {
-        window.alert("Oh no! The Computer won!");
+        window.alert("Oh nein! Der Computer hat gewonnen.");
         return true;
     }
     else if (drawPile.cards.length == 0) {
-        window.alert("There are no Cards left! It`s a draw.");
+        window.alert("Nach Nachziehstapel ist leer! Unentschieden.");
         return true;
     } else {
         return false;
