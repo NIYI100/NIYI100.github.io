@@ -45,9 +45,9 @@ const playerHandSlot = document.querySelector(".player-hand");
 const openCardSlot = document.querySelector(".playing-field");
 const drawPileSlot = document.querySelector(".draw-pile");
 
-let playerHand = new Deck();
-let computerHand = new Deck();
-let drawPile = new Deck();
+let playerHand
+let computerHand
+let drawPile
 let openCard;
 
 let lastCardSeven
@@ -64,6 +64,10 @@ function startGame() {
 }
 
 function initiateBoard() {
+    playerHand = new Deck();
+    computerHand = new Deck();
+    drawPile = new Deck();
+
     drawPile.freshDeck();
     drawPile.shuffle()
 
