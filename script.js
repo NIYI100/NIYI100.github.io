@@ -28,6 +28,7 @@ window.addEventListener("devicemotion", function (event) {
                 } else if (card.isPlayable(openCard)) {
                     if (card.value = "8") {
                         playCard(playerHand, card)
+                        renderBoard()
                     } else {
                         playCardAndComputerTurn(card)
                         return
