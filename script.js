@@ -13,7 +13,6 @@ document.getElementById("sortHand").addEventListener("click", () => {
     renderBoard()
 })
 
-/*
 window.addEventListener("devicemotion", function (event) {
     playerHand.cards.forEach(card => {
         if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
@@ -27,9 +26,9 @@ window.addEventListener("devicemotion", function (event) {
                     playCardAndComputerTurn(card)
                     return
                 } else if (card.isPlayable(openCard)) {
-                    if (card.value = "8") {
+                    if (card.value == "8") {
                         //Hier stimmt irgednwas nicht. Vielleiocht mit ComputerTurn()??
-                        playCardAndComputerTurn(card)
+                        playCard(playerHand, card)
                         return
                     } else {
                         playCardAndComputerTurn(card)
@@ -40,8 +39,8 @@ window.addEventListener("devicemotion", function (event) {
         }
     })
 }, false)
-*/
 
+/*
 function makeCardsClickable(card) {
     if (lastCardSeven) {
         if (card.value == "7") {
@@ -64,7 +63,7 @@ function makeCardsClickable(card) {
         }
     }
 }
-
+*/
 
 const computerHandSlot = document.querySelector(".computer-hand");
 const playerHandSlot = document.querySelector(".player-hand");
@@ -111,8 +110,8 @@ function renderBoard() {
     openCardSlot.innerHTML = "";
     drawPileSlot.innerHTML = "";
 
-    playerHandSlot.appendChild(playerHand.getHTML("player", makeCardsClickable));
-    computerHandSlot.appendChild(computerHand.getHTML("computer", makeCardsClickable));
+    playerHandSlot.appendChild(playerHand.getHTML("player", highliteCard));
+    computerHandSlot.appendChild(computerHand.getHTML("computer", highliteCard));
     openCardSlot.appendChild(openCard.getHTML("openCard", () => { }));
     drawPileSlot.appendChild(getDrawPileHTML());
 
