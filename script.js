@@ -44,19 +44,23 @@ window.addEventListener("devicemotion", function (event) {
 function makeCardsClickable(card) {
     if (lastCardSeven) {
         if (card.value == "7") {
+            console.log("player played 7")
             playCardAndComputerTurn(card)
             return
         }
     } else {
         if (card.value == "A") {
+            console.log("player played A")
             playCardAndComputerTurn(card)
             return
         } else if (card.isPlayable(openCard)) {
-            if (card.value = "8") {
+            if (card.value == "8") {
                 //Hier stimmt irgednwas nicht. Vielleiocht mit ComputerTurn()??
-                playCardAndComputerTurn(card)
+                console.log("player played 8")
+                playCard(playerHand, card)
                 return
             } else {
+                console.log("player played normal card")
                 playCardAndComputerTurn(card)
                 return
             }
@@ -111,7 +115,7 @@ function renderBoard() {
     drawPileSlot.innerHTML = "";
 
     playerHandSlot.appendChild(playerHand.getHTML("player", highliteCard));
-    computerHandSlot.appendChild(computerHand.getHTML("computer", highliteCard));
+    computerHandSlot.appendChild(computerHand.getHTML("computer", () => { }));
     openCardSlot.appendChild(openCard.getHTML("openCard", () => { }));
     drawPileSlot.appendChild(getDrawPileHTML());
 
@@ -213,28 +217,32 @@ async function computerTurn() {
             }
             //playableCard
             if (card.isPlayable(openCard)) {
+                console.log("computer played card")
                 playCard(computerHand, card);
                 if (card.value == "8") {
-                    //computerTurn()
+                    console.log("played card was 8")
+                    await sleep(500)
+                    computerTurn()
                 }
                 return;
             }
         }
         //Computer cant play Card but has Ass
         if (assIndex != null) {
+            console.log("computer played A")
             playCard(computerHand, computerHand.cards[assIndex])
-            console.log(openCard)
             return;
         }
+        console.log("computer drew")
         drawCard(computerHand);
     }
-    console.log(openCard)
 }
 
 function playSevenIfPossible() {
     for (let index = 0; index < computerHand.cards.length; index++) {
         let card = computerHand.cards[index];
         if (card.value == "7") {
+            console.log("computer played 7")
             playCard(computerHand, card)
             return;
         }
@@ -242,6 +250,7 @@ function playSevenIfPossible() {
     for (let i = 0; i < howManyToDraw; i++) {
         drawCard(computerHand)
     }
+    console.log("computer drew " + howManyToDraw)
     howManyToDraw = 0;
 }
 
