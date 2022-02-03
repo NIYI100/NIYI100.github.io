@@ -13,6 +13,7 @@ document.getElementById("sortHand").addEventListener("click", () => {
     renderBoard()
 })
 
+/*
 window.addEventListener("devicemotion", function (event) {
     playerHand.cards.forEach(card => {
         if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
@@ -27,6 +28,7 @@ window.addEventListener("devicemotion", function (event) {
                     return
                 } else if (card.isPlayable(openCard)) {
                     if (card.value = "8") {
+                        //Hier stimmt irgednwas nicht. Vielleiocht mit ComputerTurn()??
                         playCardAndComputerTurn(card)
                         return
                     } else {
@@ -38,6 +40,30 @@ window.addEventListener("devicemotion", function (event) {
         }
     })
 }, false)
+*/
+
+function makeCardsClickable(card) {
+    if (lastCardSeven) {
+        if (card.value == "7") {
+            playCardAndComputerTurn(card)
+            return
+        }
+    } else {
+        if (card.value == "A") {
+            playCardAndComputerTurn(card)
+            return
+        } else if (card.isPlayable(openCard)) {
+            if (card.value = "8") {
+                //Hier stimmt irgednwas nicht. Vielleiocht mit ComputerTurn()??
+                playCardAndComputerTurn(card)
+                return
+            } else {
+                playCardAndComputerTurn(card)
+                return
+            }
+        }
+    }
+}
 
 
 const computerHandSlot = document.querySelector(".computer-hand");
@@ -85,8 +111,8 @@ function renderBoard() {
     openCardSlot.innerHTML = "";
     drawPileSlot.innerHTML = "";
 
-    playerHandSlot.appendChild(playerHand.getHTML("player", highliteCard));
-    computerHandSlot.appendChild(computerHand.getHTML("computer", highliteCard));
+    playerHandSlot.appendChild(playerHand.getHTML("player", makeCardsClickable));
+    computerHandSlot.appendChild(computerHand.getHTML("computer", makeCardsClickable));
     openCardSlot.appendChild(openCard.getHTML("openCard", () => { }));
     drawPileSlot.appendChild(getDrawPileHTML());
 
