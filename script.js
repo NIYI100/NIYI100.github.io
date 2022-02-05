@@ -13,13 +13,6 @@ document.getElementById("sortHand").addEventListener("click", () => {
     renderBoard()
 })
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    return getMobileClick()
-}
-else {
-    return highliteCard(card) = makeCardsClickable(card)
-}
-
 
 function getMobileClick() {
     window.addEventListener("devicemotion", function (event) {
@@ -90,6 +83,15 @@ let openCard;
 let lastCardSeven
 let howManyToDraw
 
+
+
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    getMobileClick()
+}
+else {
+    highliteCard = makeCardsClickable
+}
 startGame()
 
 
