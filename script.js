@@ -81,7 +81,7 @@ let howManyToDraw
 
 
 
-if (window.matchMedia('(max-width: 1000px)')) {
+if (window.matchMedia('(max-width: 1000px)').matches) {
     getMobileClick()
 }
 else {
