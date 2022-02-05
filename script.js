@@ -46,23 +46,18 @@ function getMobileClick() {
 function makeCardsClickable(card) {
     if (lastCardSeven) {
         if (card.value == "7") {
-            console.log("player played 7")
             playCardAndComputerTurn(card)
             return
         }
     } else {
         if (card.value == "A") {
-            console.log("player played A")
             playCardAndComputerTurn(card)
             return
         } else if (card.isPlayable(openCard)) {
             if (card.value == "8") {
-                //Hier stimmt irgednwas nicht. Vielleiocht mit ComputerTurn()??
-                console.log("player played 8")
                 playCard(playerHand, card)
                 return
             } else {
-                console.log("player played normal card")
                 playCardAndComputerTurn(card)
                 return
             }
@@ -86,7 +81,7 @@ let howManyToDraw
 
 
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+if (window.matchMedia('(max-width: 1000px)')) {
     getMobileClick()
 }
 else {
@@ -212,38 +207,34 @@ function drawCard(hand) {
 async function computerTurn() {
     await sleep(500);
 
-    //Check if computer has 7 -> play 7 else draw 2
+
     if (lastCardSeven) {
         lastCardSeven = false
         playSevenIfPossible()
-        //normal turn
+
     } else {
         let assIndex = null
         for (let index = 0; index < computerHand.cards.length; index++) {
             let card = computerHand.cards[index];
-            //Index of Ass
+
             if (card.value == "A") {
                 assIndex = index
             }
-            //playableCard
+
             if (card.isPlayable(openCard)) {
-                console.log("computer played card")
                 playCard(computerHand, card);
                 if (card.value == "8") {
-                    console.log("played card was 8")
                     await sleep(500)
                     computerTurn()
                 }
                 return;
             }
         }
-        //Computer cant play Card but has Ass
+
         if (assIndex != null) {
-            console.log("computer played A")
             playCard(computerHand, computerHand.cards[assIndex])
             return;
         }
-        console.log("computer drew")
         drawCard(computerHand);
     }
 }
@@ -252,7 +243,6 @@ function playSevenIfPossible() {
     for (let index = 0; index < computerHand.cards.length; index++) {
         let card = computerHand.cards[index];
         if (card.value == "7") {
-            console.log("computer played 7")
             playCard(computerHand, card)
             return;
         }
@@ -260,7 +250,6 @@ function playSevenIfPossible() {
     for (let i = 0; i < howManyToDraw; i++) {
         drawCard(computerHand)
     }
-    console.log("computer drew " + howManyToDraw)
     howManyToDraw = 0;
 }
 
