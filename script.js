@@ -13,34 +13,43 @@ document.getElementById("sortHand").addEventListener("click", () => {
     renderBoard()
 })
 
-window.addEventListener("devicemotion", function (event) {
-    playerHand.cards.forEach(card => {
-        if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
-            if (lastCardSeven) {
-                if (card.value == "7") {
-                    playCardAndComputerTurn(card)
-                    return
-                }
-            } else {
-                if (card.value == "A") {
-                    playCardAndComputerTurn(card)
-                    return
-                } else if (card.isPlayable(openCard)) {
-                    if (card.value == "8") {
-                        //Hier stimmt irgednwas nicht. Vielleiocht mit ComputerTurn()??
-                        playCard(playerHand, card)
-                        return
-                    } else {
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    return getMobileClick()
+}
+else {
+    return highliteCard(card) = makeCardsClickable(card)
+}
+
+
+function getMobileClick() {
+    window.addEventListener("devicemotion", function (event) {
+        playerHand.cards.forEach(card => {
+            if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
+                if (lastCardSeven) {
+                    if (card.value == "7") {
                         playCardAndComputerTurn(card)
                         return
                     }
+                } else {
+                    if (card.value == "A") {
+                        playCardAndComputerTurn(card)
+                        return
+                    } else if (card.isPlayable(openCard)) {
+                        if (card.value == "8") {
+                            playCard(playerHand, card)
+                            return
+                        } else {
+                            playCardAndComputerTurn(card)
+                            return
+                        }
+                    }
                 }
             }
-        }
-    })
-}, false)
+        })
+    }, false)
+}
 
-/*
+
 function makeCardsClickable(card) {
     if (lastCardSeven) {
         if (card.value == "7") {
@@ -67,7 +76,6 @@ function makeCardsClickable(card) {
         }
     }
 }
-*/
 
 const computerHandSlot = document.querySelector(".computer-hand");
 const playerHandSlot = document.querySelector(".player-hand");
