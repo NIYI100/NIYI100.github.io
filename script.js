@@ -14,35 +14,6 @@ document.getElementById("sortHand").addEventListener("click", () => {
 })
 
 
-function getMobileClick() {
-    window.addEventListener("devicemotion", function (event) {
-        playerHand.cards.forEach(card => {
-            if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
-                if (lastCardSeven) {
-                    if (card.value == "7") {
-                        playCardAndComputerTurn(card)
-                        return
-                    }
-                } else {
-                    if (card.value == "A") {
-                        playCardAndComputerTurn(card)
-                        return
-                    } else if (card.isPlayable(openCard)) {
-                        if (card.value == "8") {
-                            playCard(playerHand, card)
-                            return
-                        } else {
-                            playCardAndComputerTurn(card)
-                            return
-                        }
-                    }
-                }
-            }
-        })
-    }, false)
-}
-
-
 function makeCardsClickable(card) {
     if (lastCardSeven) {
         if (card.value == "7") {
@@ -82,7 +53,31 @@ let howManyToDraw
 
 
 if (window.matchMedia('(max-width: 1000px)').matches) {
-    getMobileClick()
+    window.addEventListener("devicemotion", function (event) {
+        playerHand.cards.forEach(card => {
+            if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
+                if (lastCardSeven) {
+                    if (card.value == "7") {
+                        playCardAndComputerTurn(card)
+                        return
+                    }
+                } else {
+                    if (card.value == "A") {
+                        playCardAndComputerTurn(card)
+                        return
+                    } else if (card.isPlayable(openCard)) {
+                        if (card.value == "8") {
+                            playCard(playerHand, card)
+                            return
+                        } else {
+                            playCardAndComputerTurn(card)
+                            return
+                        }
+                    }
+                }
+            }
+        })
+    }, false)
 }
 else {
     highliteCard = makeCardsClickable
