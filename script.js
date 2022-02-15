@@ -1,5 +1,6 @@
 import { Deck } from "./deck.js"
 
+//Buttons
 document.getElementById("restart").addEventListener("click", () => {
     startGame()
 })
@@ -13,8 +14,35 @@ document.getElementById("sortHand").addEventListener("click", () => {
     renderBoard()
 })
 
+//HTML Elements
+const computerHandSlot = document.querySelector(".computer-hand");
+const playerHandSlot = document.querySelector(".player-hand");
+const openCardSlot = document.querySelector(".playing-field");
+const drawPileSlot = document.querySelector(".draw-pile");
 
-function makeCardsClickable(card) {
+let playerHand
+let computerHand
+let drawPile
+let openCard;
+
+let lastCardSeven
+let howManyToDraw
+
+//How to play Cards depending on enduser device
+if (window.matchMedia('(max-width: 1000px)').matches) {
+    window.addEventListener("devicemotion", function (event) {
+        playerHand.cards.forEach(card => {
+            if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
+                playCardsByClick(card)
+            }
+        })
+    }, false)
+} else {
+    highliteCard = playCardsByClick
+}
+
+// Function for playing Cards
+function playCardsByClick(card) {
     if (lastCardSeven) {
         if (card.value == "7") {
             playCardAndComputerTurn(card)
@@ -36,54 +64,8 @@ function makeCardsClickable(card) {
     }
 }
 
-const computerHandSlot = document.querySelector(".computer-hand");
-const playerHandSlot = document.querySelector(".player-hand");
-const openCardSlot = document.querySelector(".playing-field");
-const drawPileSlot = document.querySelector(".draw-pile");
 
-let playerHand
-let computerHand
-let drawPile
-let openCard;
-
-let lastCardSeven
-let howManyToDraw
-
-
-
-
-if (window.matchMedia('(max-width: 1000px)').matches) {
-    window.addEventListener("devicemotion", function (event) {
-        playerHand.cards.forEach(card => {
-            if (event.accelerationIncludingGravity.y > 13 && card.isChosen) {
-                if (lastCardSeven) {
-                    if (card.value == "7") {
-                        playCardAndComputerTurn(card)
-                        return
-                    }
-                } else {
-                    if (card.value == "A") {
-                        playCardAndComputerTurn(card)
-                        return
-                    } else if (card.isPlayable(openCard)) {
-                        if (card.value == "8") {
-                            playCard(playerHand, card)
-                            return
-                        } else {
-                            playCardAndComputerTurn(card)
-                            return
-                        }
-                    }
-                }
-            }
-        })
-    }, false)
-}
-else {
-    highliteCard = makeCardsClickable
-}
 startGame()
-
 
 
 function startGame() {
